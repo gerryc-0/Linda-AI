@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data, archives and outputs
+*.npz
+*.zip
+*.pt
+*.pth
+data/
+datasets/
+VideoDataset/
+frames/
+pose_data/
+models/
+
+# Logs
+*.log
+logs/
+*.out
+plan.txt
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+Thumbs.db 
+ 
