@@ -12,6 +12,9 @@ Today = Function('Today', Person, BoolSort()) # booked today
 Tomorrow = Function('Tomorrow', Person, BoolSort()) # book tomorrow
 s = Solver()
 
+# Urgent is also in the context of priority 
+# due to being in a disadvantaged group
+
 urgency = {}
 random.seed(42)
 for i, p in enumerate(persons):

@@ -1,6 +1,6 @@
 from z3 import *
 
-# take deposit of someone at the weekend
+# take deposit off someone at the weekend
 Person, (Alice, Bob, Carol) = EnumSort('Person', ['Alice', 'Bob', 'Carol'])
 
 # Predicate: Pregnant maps a Person to True/False
