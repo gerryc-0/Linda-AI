@@ -1,6 +1,8 @@
 import z3
 import random
 
+# traige patients based on pain and infection
+
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
 num_patients = 20

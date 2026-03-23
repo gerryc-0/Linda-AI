@@ -1,24 +1,32 @@
 # Linda-AI
-Reflective ethical analysis and Z3 modelling of Linda AI, an AI receptionist system used in dental clinics.
+Our implemtation of various functional and ethical goals of Linda-AI virtual dental receptionist.
 
-This repository contains a set of small Python scripts that model ethical decision scenarios for **Linda AI**, an AI receptionist used in dental clinics.
 
-The scripts use the **Z3 constraint solver** to represent how different ethical frameworks influence decisions made by the AI assistant.
 
 ## Functional Goals
 - Maximise Revenue/Bookings
     - [utilitarian\utilitarian_functional-UNSAT.py](utilitarian\utilitarian_functional-UNSAT.py)
 - Reduce FTA rates
+    - [deontology\deontology_functional.py](deontology\deontology_functional.py)
 - Capturing and on-boarding new patients
-    - 
+    - Medical Card vs Practice Owner (deontology)
 - Patient reactivation
-- Enforce practice policies
+    - avoid spam phonecalls: how recently did we call
+- Enforce practice policies (deontology)
+    - [deontology\deontology_functional.py](deontology\deontology_functional.py)
 - Triage and prioritise appointments
+    - [utilitarian](utilitarian) and [prioritarian](prioritarian)
 - Free up receiptionist time for clinical matters
+    - follows from all the above
 
+## Ethical Goals
+- Increase access to dental healthcare.
+- Work with receptionist staff, don't replace them.
+- Adhere to all data protection and dental laws and best practices.
 
 ## To-do
-- [ ] Failure-to-attend workflow
+- [x] Failure-to-attend workflow
+    - covered by [deontology\deontology_functional.py](deontology\deontology_functional.py)
 - [ ] Medical Card vs Practice Owner
     - Correct implementation of booking policies
 - [ ] Patient vs Receptionist
