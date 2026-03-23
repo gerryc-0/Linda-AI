@@ -27,6 +27,7 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 ## To-do
 - [x] Failure-to-attend workflow
     - covered by [deontology\deontology_functional.py](deontology\deontology_functional.py)
+    - [ ] short notice cancellation: add fee to their account
 - [ ] Medical Card vs Practice Owner
     - Correct implementation of booking policies
 - [ ] Patient vs Receptionist
