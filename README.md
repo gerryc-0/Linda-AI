@@ -1,8 +1,6 @@
 # Linda-AI
 Our implemtation of various functional and ethical goals of Linda-AI virtual dental receptionist.
 
-
-
 ## Functional Goals
 - Maximise Revenue/Bookings
     - [utilitarian\utilitarian_functional-UNSAT.py](utilitarian\utilitarian_functional-UNSAT.py)
@@ -25,9 +23,12 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 - Adhere to all data protection and dental laws and best practices.
 
 ## To-do
+### Functional
 - [x] Failure-to-attend workflow
     - covered by [deontology\deontology_functional.py](deontology\deontology_functional.py)
     - [ ] short notice cancellation: add fee to their account
+- [ ] No spam phone calls
+### Value Conflicts
 - [ ] Medical Card vs Practice Owner
     - Correct implementation of booking policies
 - [ ] Patient vs Receptionist
