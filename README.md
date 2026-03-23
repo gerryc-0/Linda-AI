@@ -3,15 +3,15 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 
 ## Functional Goals
 - Maximise Revenue/Bookings
-    - [utilitarian\utilitarian_functional-UNSAT.py](utilitarian\utilitarian_functional-UNSAT.py)
+    - [utilitarian/utilitarian_functional-UNSAT.py](utilitarian/utilitarian_functional-UNSAT.py)
 - Reduce FTA rates
-    - [deontology\deontology_functional.py](deontology\deontology_functional.py)
+    - [deontology/deontology_functional.py](deontology/deontology_functional.py)
 - Capturing and on-boarding new patients
     - Medical Card vs Practice Owner (deontology)
 - Patient reactivation
     - avoid spam phonecalls: how recently did we call
 - Enforce practice policies (deontology)
-    - [deontology\deontology_functional.py](deontology\deontology_functional.py)
+    - [deontology/deontology_functional.py](deontology/deontology_functional.py)
 - Triage and prioritise appointments
     - [utilitarian](utilitarian) and [prioritarian](prioritarian)
 - Free up receiptionist time for clinical matters
@@ -25,7 +25,7 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 ## To-do
 ### Functional
 - [x] Failure-to-attend workflow
-    - covered by [deontology\deontology_functional.py](deontology\deontology_functional.py)
+    - covered by [deontology/deontology_functional.py](deontology/deontology_functional.py)
     - [ ] short notice cancellation: add fee to their account
 - [ ] No spam phone calls
 ### Value Conflicts
