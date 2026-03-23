@@ -5,9 +5,25 @@ This repository contains a set of small Python scripts that model ethical decisi
 
 The scripts use the **Z3 constraint solver** to represent how different ethical frameworks influence decisions made by the AI assistant.
 
-## Scripts
+## Functional Goals
+- Maximise Revenue/Bookings
+    - [utilitarian\utilitarian_functional-UNSAT.py](utilitarian\utilitarian_functional-UNSAT.py)
+- Reduce FTA rates
+- Capturing and on-boarding new patients
+    - 
+- Patient reactivation
+- Enforce practice policies
+- Triage and prioritise appointments
+- Free up receiptionist time for clinical matters
 
-* `linda-ai-utilitarianism.py` – prioritising patients based on overall harm reduction.
-* `linda-ai-prioritarianism.py` – prioritising vulnerable or disadvantaged patients.
-* `linda-ai-deontology.py` – enforcing rule-based duties such as disclosure and consent.
-* `linda-ai-virtue.py` – modelling virtuous professional behaviour (e.g., avoiding unnecessary treatment recommendations).
+
+## To-do
+- [ ] Failure-to-attend workflow
+- [ ] Medical Card vs Practice Owner
+    - Correct implementation of booking policies
+- [ ] Patient vs Receptionist
+    - Expedient vs Accurate triage
+- [ ] Patient vs Practice Owner
+    - Appropriate Care, no overtreatment
+- [ ] Dentist vs Practice Owner
+    - Appointment length and workload
