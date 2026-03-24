@@ -1,6 +1,6 @@
 from z3 import *
 
-# don't book heavily pregnant women
+# don't book pregnant women
 # --- EnumSort: a finite set of exactly three named values ---
 Person, (Alice, Bob, Carol) = EnumSort('Person', ['Alice', 'Bob', 'Carol'])
 
