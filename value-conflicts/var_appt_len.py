@@ -1,7 +1,6 @@
 import z3
 import random
-
-# traige patients based on pain and infection
+# traige patients appropriately based on pain and infection, and appointment length
 
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
@@ -12,10 +11,21 @@ num_hours = 9  # Available appointment slots
 patients_data = []
 
 # Generate synthetic patient data
-random.seed(42)
+random.seed(42) # seed make sure same unsat is produced each time
 for i in range(num_patients):
     revenue = random.randint(1, 10)*100
-    patients_data.append({'id': i, 'revenue': revenue})
+    pain = random.randint(0, 10)
+    # Infection and pain levels are correlated
+    if pain > 5:
+        infection = random.randint(5, 10)
+    else:
+        infection = random.randint(0, 5)
+    time = random.choice([15,30,45,60])
+    patients_data.append({'id': i, 'pain': pain,
+                        'infection': infection,
+                        'priority': z3.IntVal(pain + infection),
+                        'revenue': revenue,
+                        'time': time})
 
 # optimiser
 
@@ -23,41 +33,31 @@ optimizer = z3.Optimize()
 
 # var for each patient each hour to decide if they are scheduled or not
 # use ints for mult below
-appointment_slots = [
-    [z3.Int(f"patient_{i}_hour_{j}") for j in range(num_hours)]
-    for i in range(num_patients)
-]
+see_patient = [z3.Int(f"see_patient_{i}") for i in range(num_patients)]
+
 
 # constrain to 0 or 1 as in grid problem
 for i in range(num_patients):
-    for j in range(num_hours):
-        v = appointment_slots[i][j]
-        optimizer.assert_and_track(
-            z3.Or(v == 0, v == 1),
-            f"Add paitient {i} hour {j} to optimiser"
-        )
-
-# Each hour can be assigned to at most one patient
-for j in range(num_hours):
+    v = see_patient[i]
     optimizer.assert_and_track(
-        z3.Sum([appointment_slots[i][j] for i in range(num_patients)]) <= 1,
-        f"One pantient per hour {j}"
-    )
-
-# Each patient can receive at most one appointment
-for i in range(num_patients):
-    optimizer.assert_and_track(
-        z3.Sum([appointment_slots[i][j] for j in range(num_hours)]) <= 1,
-        f"Only see patient {i} at most once"
+        z3.Or(v == 0, v == 1),
+        f"See patient {i}"
     )
 
 # score is sum product of revenues and schedule
 utilitarian_score = z3.Sum([
-    appointment_slots[i][j] * patients_data[i]['revenue']
+    see_patient[i] * patients_data[i]['revenue']
     for i in range(num_patients)
-    for j in range(num_hours)
 ])
 
+total_time = z3.Sum([
+    see_patient[i] * patients_data[i]['time']
+    for i in range(num_patients)
+])
+optimizer.assert_and_track(
+    total_time <= num_hours * 60,
+    f"Total time booked should be under {num_hours} hours"
+)
 # maximise score
 optimizer.maximize(utilitarian_score)
 
@@ -70,8 +70,7 @@ if result == z3.sat:
     unscheduled = []
 
     for i in range(num_patients):
-        is_scheduled = any(model[appointment_slots[i][j]] == 1 for j in range(num_hours))
-        if is_scheduled:
+        if model[see_patient[i]] == 1:
             scheduled.append(patients_data[i])
         else:
             unscheduled.append(patients_data[i])
@@ -83,20 +82,15 @@ if result == z3.sat:
     scheduled_revenue = sum(p['revenue'] for p in scheduled)
     deferred_revenue  = sum(p['revenue'] for p in unscheduled)
 
-    print(f"\nTotal Revenue (Scheduled): {scheduled_revenue}")
-    print(f"Total Revenue (Deferred):  {deferred_revenue}")
+    scheduled_time = sum(p['time'] for p in scheduled)
 
-    print("\n===schedule per hour===")
-    for j in range(num_hours):
-        for i in range(num_patients):
-            if model[appointment_slots[i][j]] == 1:
-                print(f"Hour {j}: Patient {i}")
-                print(f"\tRevenue: {patients_data[i]['revenue']}")
+    print(f"\nTotal Revenue (Scheduled): {scheduled_revenue}")
+    print(f"Total time (Scheduled): {scheduled_time/60}/{num_hours} Hours")
+    print(f"\nTotal Revenue (Deferred):  {deferred_revenue}")
   
     print("\n---unscheduled patients---")
     for p in sorted(unscheduled, key=lambda x: -x['revenue']):
-        print(f"  Patient {p['id']:2d}: revenue={p['revenue']}")
-
+        print(f"  Patient {p['id']}: revenue={p['revenue']}, priority={p['priority']}")
 else:
     print("UNSAT")
     print("Core:", optimizer.unsat_core())

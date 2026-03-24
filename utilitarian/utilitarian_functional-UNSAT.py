@@ -1,5 +1,6 @@
 import z3
 import random
+# traige patients appropriately based on pain and infection
 
 # this can produce potentially UNSAT results by maximising revenue and then checking priority
 
