@@ -6,7 +6,6 @@ people = [f"person_{i}" for i in range(5)]
 slots = 3 # 3 free slots opened up
 Person, persons = EnumSort('Person', people)
 
-# Predicate: Pregnant maps a Person to True/False
 Urgent = Function('Urgent', Person, BoolSort())
 Today = Function('Today', Person, BoolSort()) # booked today
 Tomorrow = Function('Tomorrow', Person, BoolSort()) # book tomorrow
@@ -34,9 +33,10 @@ for i, q in enumerate(persons):
 # only 3 slots left today
 s.add(Sum([If(Today(p), 1, 0) for p in persons]) <= slots)
 
-# --- Goal: find a satisfying MODEL (not a refutation) ---
+# --- Goal: find a satisfying MODEL ---
 result = s.check()
 
+# should be unsat - 5 urgent patients, only 3 slots available.
 if result == sat:
     m = s.model()
     print("Result: SAT — a valid assignment was found.")
