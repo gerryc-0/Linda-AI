@@ -54,11 +54,7 @@ total_time = z3.Sum([
     see_patient[i] * patients_data[i]['time']
     for i in range(num_patients)
 ])
-optimizer.assert_and_track(
-    total_time <= num_hours * 60,
-    f"Total time booked should be under {num_hours} hours"
-)
-# maximise score
+
 optimizer.maximize(utilitarian_score)
 
 result = optimizer.check()
@@ -94,7 +90,7 @@ if result == z3.sat:
 
     s = z3.Solver()
 
-    s.assert_and_track(z3.BoolVal(scheduled_time <= num_hours*60.0), "Scheduled time greater than total hours. Dentist burnout inevitable!")
+    s.assert_and_track(z3.BoolVal(scheduled_time <= num_hours*60), "Scheduled time greater than total hours. Dentist burnout inevitable!")
     print(s.check())
     print(s.unsat_core())
 else:
