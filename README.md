@@ -9,8 +9,10 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 - Capturing and on-boarding new patients
     - Medical Card vs Practice Owner (deontology)
 - Patient reactivation
-    - avoid spam phonecalls: how recently did we call
-- Enforce practice policies (deontology)
+    - avoid spam phonecalls: how recently did we call (deontology)
+    - [deontology/deontology_functional_pt_reactivation.py](deontology/deontology_functional_pt_reactivation.py)
+- Enforce practice policies
+    - deposit policies (deontology)
     - [deontology/deontology_functional.py](deontology/deontology_functional.py)
 - Triage and prioritise appointments
     - [utilitarian](utilitarian) and [prioritarian](prioritarian)
@@ -26,14 +28,14 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 ### Functional
 - [x] Failure-to-attend workflow
     - covered by [deontology/deontology_functional.py](deontology/deontology_functional.py)
-    - [ ] short notice cancellation: add fee to their account
-- [ ] No spam phone calls
+    - [x] short notice cancellation: add fee to their account
+- [x] No spam phone calls
 ### Value Conflicts
-- [ ] Medical Card vs Practice Owner
+- [x] Medical Card vs Practice Owner
     - Correct implementation of booking policies
-- [ ] Patient vs Receptionist
+- [x] Patient vs Receptionist
     - Expedient vs Accurate triage
-- [ ] Patient vs Practice Owner
+- [x] Patient vs Practice Owner
     - Appropriate Care, no overtreatment
-- [ ] Dentist vs Practice Owner
+- [x] Dentist vs Practice Owner
     - Appointment length and workload
