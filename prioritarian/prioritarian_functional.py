@@ -33,7 +33,7 @@ for i, q in enumerate(persons):
 # only 3 slots left today
 s.add(Sum([If(Today(p), 1, 0) for p in persons]) <= slots)
 
-# --- Goal: find a satisfying MODEL ---
+# check model
 result = s.check()
 
 # should be unsat - 5 urgent patients, only 3 slots available.

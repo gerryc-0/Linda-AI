@@ -34,7 +34,7 @@ for i,p in enumerate(persons):
 # only 1 emergency slot left
 s.add(Sum([If(Booked(p), 1, 0) for p in persons]) <= slots)
 
-# --- Goal: find a satisfying MODEL (not a refutation) ---
+# check model
 result = s.check()
 
 if result == sat:

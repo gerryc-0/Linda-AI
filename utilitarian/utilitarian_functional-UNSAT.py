@@ -2,7 +2,7 @@ import z3
 import random
 # traige patients appropriately based on pain and infection
 
-# this can produce potentially UNSAT results by maximising revenue and then checking priority
+# this could produce potentially UNSAT results by maximising revenue and then checking priority
 
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
