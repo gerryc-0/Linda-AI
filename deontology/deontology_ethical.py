@@ -1,7 +1,6 @@
 from z3 import *
 
 # don't book pregnant women
-# --- EnumSort: a finite set of exactly three named values ---
 Person, (Alice, Bob, Carol) = EnumSort('Person', ['Alice', 'Bob', 'Carol'])
 
 # Predicate: Pregnant maps a Person to True/False
@@ -19,7 +18,7 @@ s.add(Or(Booked(Alice),Booked(Bob),Booked(Carol))) # must book somebody
 p = Const('p', Person)
 s.add(ForAll([p], Implies(Pregnant(p), Not(Booked(p)))))
 
-# --- Goal: find a satisfying MODEL (not a refutation) ---
+# check output
 result = s.check()
 if result == sat:
     m = s.model()
