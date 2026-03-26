@@ -4,6 +4,8 @@ from z3 import *
 
 Person, (Alice, Bob, Carol) = EnumSort('Person', ['Alice', 'Bob', 'Carol'])
 
+# toy example of value conflict
+# not necessarily medically accurate but overtreatment is a real concern in dentistry
 Crown = Function('Crown', Person, BoolSort())
 Veneer = Function('Veneer', Person, BoolSort())
 Root_Canal = Function('Root_Canal', Person, BoolSort())
@@ -11,7 +13,7 @@ Root_Canal = Function('Root_Canal', Person, BoolSort())
 s = Solver()
 
 p = Const('p', Person)
-# must have root canal if you get crown or veneer
+# must have root canal if you get crown or veneer- in this toy example
 s.add(ForAll([p], Implies(Crown(p),Root_Canal(p)))) 
 s.add(ForAll([p], Implies(Veneer(p),Root_Canal(p))))
 
