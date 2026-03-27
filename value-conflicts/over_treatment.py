@@ -1,6 +1,6 @@
 from z3 import *
 
-# adhere to booking policies and do not book medical card holders
+# do not offer over treatment if preliminary issues are not present
 
 Person, (Alice, Bob, Carol) = EnumSort('Person', ['Alice', 'Bob', 'Carol'])
 
