@@ -1,7 +1,7 @@
 import z3
 import random
 
-# traige patients based on pain and infection
+# traige patients based on available time, and maximise revenue
 
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
