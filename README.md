@@ -1,5 +1,13 @@
 # Linda-AI
-Our implemtation of various functional and ethical goals of Linda-AI virtual dental receptionist.
+Our implementation of various functional and ethical goals of Linda-AI virtual dental receptionist.
+
+## Setup
+Only project dependency is z3-solver, Python v3.10+.
+
+pip install -r requirements.txt
+python deontology/deontology_ethical.py
+
+Note: Scripts ending in -UNSAT were built to produce unsatisfiable results. They demonstrate what happens when constraints conflict — for example, maximising revenue without respecting patient priority or dentist working hours.
 
 ## Functional Goals
 - Maximise Revenue/Bookings
@@ -21,10 +29,16 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
 
 ## Ethical Goals
 - Increase access to healthcare while keeping access fair and equitable.
+    - [deontology/deontology_ethical.py](deontology/deontology_ethical.py)
 - Triage patients accurately.
+    - [utilitarian/utilitarian_ethical.py](utilitarian/utilitarian_ethical.py)
+    - [prioritarian/prioritarian_ethical.py](prioritarian/prioritarian_ethical.py)
 - Don't over-treat patients or encourage overtreatment.
+    - [deontology/over_treatment.py](deontology/over_treatment.py)
 - Protect vulnerable patients.
+    - [deontology/deontology_ethical.py](deontology/deontology_ethical.py)
 - Adhere to the relevant data protection and dental profession best practices and laws.
+    - [deontology/deontology_functional_pt_reactivation.py](deontology/deontology_functional_pt_reactivation.py)
 
 ## To-do
 ### Functional
