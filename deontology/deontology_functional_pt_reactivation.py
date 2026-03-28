@@ -1,26 +1,20 @@
 from z3 import *
 import random
 
-# Deontology functional goal: Patient Reactivation
 # Linda AI must not spam call patients when carrying out patient reactivations
-
-# When a patient books with the practice, they consent to being
-# contacted by Linda AI. This consent remains valid until:
-# (a) the patient explicitly retracts their consent or
-# (b) GDPR patient data retention requirements expire (e.g. 7 years after last contact)
-
-# deontology rules:
-# 1. Do not contact a patient if they were contacted in the last 6 months
-# 2. Do not cold call a patient unless they have valid consent (not retracted, not expired)
-# 3. Must reactivate at least one patient (functional requirement)
+# consent is valid unless patient retracts or GDPR is invalid (retention period ended)
 
 people = [f"person_{i}" for i in range(10)]
 Person, patients = EnumSort('Person', people)
 
 # predicates
+# dont contact a patient if they were contacted in the last 6 months
 ContactedRecently = Function('ContactedRecently', Person, BoolSort()) # contacted in last 6 months
+# dont cold call a patient unless they have given consent
 ConsentRetracted = Function('ConsentRetracted', Person, BoolSort()) # patient has retracted consent
+# dont cold call a patient if GDPR is no longer valid
 GDPRinvalid = Function('GDPRinvalid', Person, BoolSort()) # data retention period exceeded
+
 Reactivate = Function('Reactivate', Person, BoolSort()) # decision variable
 
 s = Solver()

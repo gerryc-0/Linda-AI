@@ -1,26 +1,13 @@
 from z3 import *
 import random
 
-# Case 1: Flexible Deposit Policy
-# A deposit is required if ANY of the following apply:
-# 1. Weekend appointment (harder to fill if cancelled)
-# 2. High-demand practitioner
-# 3. Same-day booking (no time to rebook)
-# 4. Long appointment (significant blocked time)
-# 5. Appointment type with historically high no-show rate
-# 6. Bank holiday slot (reduced capacity)
-# 7. Patient or appointment type has high no-show history
-
-# Case 2: Short Notice Cancellation Fee
-# If a patient cancels within 24 hours of their appointment, a fee is added
-# to their account. Exceptions:
-#   (a) Medical emergency — fee is waived
-#   (b) First-time offence — patient receives a warning, no fee
+# financial policies of dental practice - deposits and cancellations
 
 people = [f"person_{i}" for i in range(10)]
 Person, patients = EnumSort('Person', people)
 
-# flexible deposit policies - predicates 
+# flexible deposit policies - predicates
+# deposit must be paid
 Deposit = Function('Deposit', Person, BoolSort())
 Booked = Function('Booked', Person, BoolSort())
 Weekend = Function('Weekend', Person, BoolSort())
@@ -31,6 +18,7 @@ BankHoliday = Function('BankHolidays', Person, BoolSort())
 BadHistory =  Function('BadHistory', Person, BoolSort()) # has high no-show rate (apt type or patient history)
 
 # cancellation fee policies - predicates
+# fee waived if emergency or first offence
 ShortNoticeCancellation = Function('ShortNoticeCancellation', Person, BoolSort())  # cancelled within 24hrs
 MedicalEmergency = Function('MedicalEmergency', Person, BoolSort()) # medical emergency
 FirstOffence = Function('FirstOffence', Person, BoolSort()) # first time cancellation at short notice
