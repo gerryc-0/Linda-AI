@@ -20,9 +20,11 @@ Our implemtation of various functional and ethical goals of Linda-AI virtual den
     - follows from all the above
 
 ## Ethical Goals
-- Increase access to dental healthcare.
-- Work with receptionist staff, don't replace them.
-- Adhere to all data protection and dental laws and best practices.
+- Increase access to healthcare while keeping access fair and equitable.
+- Triage patients accurately.
+- Don't over-treat patients or encourage overtreatment.
+- Protect vulnerable patients.
+- Adhere to the relevant data protection and dental profession best practices and laws.
 
 ## To-do
 ### Functional
