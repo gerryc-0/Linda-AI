@@ -5,6 +5,7 @@ Our implementation of various functional and ethical goals of Linda-AI virtual d
 Only project dependency is z3-solver, Python v3.10+.
 
 pip install -r requirements.txt
+
 python deontology/deontology_ethical.py
 
 Note: Scripts ending in -UNSAT were built to produce unsatisfiable results. They demonstrate what happens when constraints conflict — for example, maximising revenue without respecting patient priority or dentist working hours.
