@@ -1,6 +1,6 @@
 import z3
 import random
-# traige patients appropriately based on pain and infection, and appointment length
+# triage patients appropriately based on pain and infection, and appointment length
 
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
@@ -28,13 +28,11 @@ for i in range(num_patients):
                         'time': time})
 
 # optimiser
-
 optimizer = z3.Optimize()
 
 # var for each patient each hour to decide if they are scheduled or not
 # use ints for mult below
 see_patient = [z3.Int(f"see_patient_{i}") for i in range(num_patients)]
-
 
 # constrain to 0 or 1 as in grid problem
 for i in range(num_patients):
@@ -55,6 +53,7 @@ total_time = z3.Sum([
     for i in range(num_patients)
 ])
 
+# no time or scheduling constraints
 optimizer.maximize(utilitarian_score)
 
 result = optimizer.check()

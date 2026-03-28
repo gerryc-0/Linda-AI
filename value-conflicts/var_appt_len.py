@@ -1,6 +1,6 @@
 import z3
 import random
-# traige patients appropriately based on pain and infection, and appointment length
+# triage patients appropriately based on pain and infection, and appointment length
 
 # set number of patients and hours
 # simple 1 hour per appoitment in this model, may extend if we have time
